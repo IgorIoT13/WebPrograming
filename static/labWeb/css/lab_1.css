@@ -1,0 +1,54 @@
+
+body{
+    font-family: Calibri;
+}
+nav{
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-around;
+
+}
+ nav article{
+        padding-top:25px ;
+        justify-content: left;
+        flex-wrap: wrap;
+    }
+        nav article .button{
+            font-size: 23px;
+            color: black;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        nav article .button:hover{
+            margin-top: 15px;
+            font-size: 23px;
+            color: black;
+            text-decoration: none;
+            font-weight: 800;
+        }
+    nav aside{
+        padding-top: 5px;
+        text-align: right;
+        justify-content: right;
+        display: flex;
+        margin-right: 5%;
+    }
+        nav aside .icon{
+            margin-top: 10px;
+            margin-bottom: 0px;
+            font-size: 33px;
+            padding-right: 10px;
+            width:27px;
+            height: 38px;
+            border:2px solid #458FF6;
+            background-color: #458FF6;
+            border-radius: 50%;
+            color: white;
+        }
+        nav aside .text{
+            margin-top: 15px;
+            margin-bottom: 0px;
+            font-size: 28px;
+            padding-left: 10px;
+        }
