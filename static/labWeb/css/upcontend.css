@@ -64,9 +64,16 @@ span{
         padding:60px 0px ;
         text-align: center;
     }
+
+    span .span_div a:hover{
+        background-color: #458FF6;
+        border: 5px solid white;
+        text-decoration: none;
+        color: white;
+    }
         span .span_div a{
             margin: 30px 60px;
-            padding: 15px 30px;
+            padding: 15px 60px;
             border: 2px solid #458FF6;
             text-decoration: none;
             border-radius: 35px;
@@ -75,24 +82,40 @@ span{
         }
 
         /*Media*/
-@media screen and (max-width: 1050px){
+@media screen and (max-width: 1001px){
+   span{
+    margin-left: 20%;
+}
+    span .article{
+        margin-left: 3.5%;
+    }
+    span .span_div{
+        display: flex;
+        justify-content: center;
+    }
     span article{
         text-align: center;
         justify-content: center;
         display: block;
     }
+
     span article .container_article{
             text-align: center;
-            margin-left: 23%;
-            max-width: 50%;
+            margin-left: 10px;
+            max-width: 90%;
             padding: 30px 23px;
             border-radius: 20px;
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.02);
         }
     span .img_bag{
-        display: none;
+        padding-left: 0;
     }
     span .img_bag_big{
-        display: none;
+        margin-top: 1000px;
+    }
+}
+@media screen and (min-width: 1900px){
+    span .img_bag{
+        padding-left: 13%;
     }
 }

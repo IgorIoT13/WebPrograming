@@ -1,7 +1,15 @@
+body{
+    font-family: Calibri;
+    align-content: center;
+    padding: 0px;
+    margin: 0px;
+    max-width: 100%;
+}
+
 /*Navigation panel*/
 nav{
     width: 100%;
-    padding: 10px 0px;
+    padding: 15px 0px;
     margin-right: 0px;
     display: flex;
     justify-content: space-between;
@@ -62,15 +70,21 @@ nav{
 
 
         /*Media*/
-@media screen and (max-width: 870px) {
+@media screen and (max-width: 1001px){
     nav {
-        display: block;
-        text-align: center;
+        display: flex;
+        justify-content: space-around;
+    }
+    nav article{
+        margin-left: 0;
     }
     nav ul{
         display: block;
         text-align: center;
     }
+    nav aside .icon{
+            margin-left: 20%;
+        }
         nav ul li {
             margin: 10px 0px;
         }
@@ -84,6 +98,13 @@ nav{
         }
         nav aside{
             justify-content: center;
-            margin-left: 14%;
+            margin-left: 6%;
         }
+}
+
+@media screen and (min-width: 1900px){
+    nav{
+        margin: 0px 15% 0px 9%;
+        max-width: 80%;
+    }
 }
