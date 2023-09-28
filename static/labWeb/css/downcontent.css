@@ -88,6 +88,9 @@
         max-width: 80%;
 
     }
+    .position aside{
+            font-size: 35px;
+        }
         .Under .box .container_article{
             display: block;
             justify-content: normal;
@@ -107,6 +110,10 @@
                 padding-bottom: 10%;
             }
             .Under .box .container_article .text_fat{
+                font-size: 45px;
                  margin: 100px 0 0;
              }
+            .Under .box .container_article br{
+                display: none;
+            }
 }

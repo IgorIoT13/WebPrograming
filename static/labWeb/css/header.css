@@ -35,7 +35,7 @@
             margin-bottom: 55px;
         }
         header article .button_header{
-            margin: 30px 0px;
+            margin: 50px 0px;
             padding: 15px 30px;
             border: 2px solid #458FF6;
             text-decoration: none;
@@ -77,28 +77,29 @@
         }
             header article h2{
                 font-weight: 700;
-                font-size: calc(35px + 1.5vw);
+                font-size: calc(55px + 1.5vw);
             }
             header article hr{
                 margin-left: auto;
             }
             header article .text{
-                font-size: calc(20px + 1.5vw);
+                font-size: calc(35px + 1.5vw);
                 margin-bottom: 35px;
             }
             header article .button_header{
                 padding: 10px 20px;
                 margin-top: 150px;
                 border-radius: 12.5px;
-                font-size: calc(20px + 1.5vw);
+                font-size: calc(55px + 1.5vw);
                 color: #458FF6;
         }
+
             header article .button_header:hover{
                 padding: 10px 20px;
                 margin-top: 150px;
                 border-radius: 12.5px;
-                font-size: calc(20px + 1.5vw);
-                color: #458FF6;
+                font-size: calc(55px + 1.5vw);
+                color: white;
         }
         header aside{
             display: none;
