@@ -1,38 +1,130 @@
 import {
+    getAlllight
+}from "./BackEnd.js";
+
+import {
     getInputValues,
-    cleanInput
-}from "./dom_util.js";
-
-let listObj = document.getElementById('list__object');
-const buttCreate = document.getElementById('create_butt');
-const create_bar = document.getElementById('Create__block');
-let buttback = document.getElementById('back_in');
+    cleanInput,
+    addItemToPage,
+    cleanInputEd,
+    getInputValuesEdit,
+} from "./dom_util.js";
 
 
-const nameInp = document.getElementById('name_inp');
-const descInp = document.getElementById('desc');
-const fuel = document.getElementById('fuel_inp');
-const createInForm = document.getElementById('Create_inp_in');
+const listObj = document.getElementById('list__object');
+const objList = []
+
+const sortButton = document.getElementById('sort_butt');
+
+const FuelButton = document.getElementById('Fuel');
+const textOut = document.getElementById('Fuel__text');
+const search = document.getElementById('search_butt');
+const search_inp = document.getElementById('search');
 
 
-buttCreate.addEventListener('click', (event) =>{
+function BuldingPage() {
+    objList.forEach(el => {
+        let {id, title, description, fuel} = el
+        addItemToPage(id, title, description, fuel);
+    })
+}
+
+function ClearList() {
+    while (objList.firstChild) {
+       objList.removeChild(objList.firstChild);
+   };
+
+    while (listObj.firstChild) {
+       listObj.removeChild(listObj.firstChild);
+   };
+}
+function ExtractAllElements(){
+    let promise = getAlllight();
+
+    ClearList();
+
+    promise.then(data => {
+        data.forEach(obj => {
+            objList.push(obj)
+        });
+
+    BuldingPage();
+});
+}
+
+
+ExtractAllElements();
+
+
+// Search
+search.addEventListener('click', (event) =>{
+   event.preventDefault();
+
+   let curr = [] ;
+   objList.forEach((el) => {
+       let {title} = el;
+       if (title.toLowerCase().indexOf(search_inp.value.toLowerCase()) !== -1) {
+            curr.push(el);
+       }
+
+   });
+   ClearList();
+   curr.forEach((el) =>{
+
+       let {id, title, description, fuel} = el;
+       addItemToPage(id, title, description, fuel);
+   });
+});
+// End Search
+
+// Fuel
+FuelButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    let val = []
+    let result = 0;
+    listObj.forEach((el) => {
+        let {fuel} = el;
+        val.push(parseInt(fuel));
+    });
+    result = val.reduce((a, b) =>{
+        return a + b ;
+    },0);
+
+    textOut.innerText = result;
+
+});
+// End Fuel
+
+// Sort
+sortButton.addEventListener("click", (event) => {
     event.preventDefault();
 
-    create_bar.style.display = 'block';
+    objList.sort((a, b) => {
+        // Спочатку сортуємо за паливом (зростаючий порядок)
+        if (a.fuel < b.fuel) return -1;
+        if (a.fuel > b.fuel) return 1;
 
-    listObj.style.display = 'none';
+        // Якщо паливо однакове, сортуємо за назвою (за алфавітом)
+        if (a.title < b.title) return -1;
+        if (a.title > b.title) return 1;
+
+        // Якщо і назва, і паливо однакові, сортуємо за описом
+        if (a.desc < b.desc) return -1;
+        if (a.desc > b.desc) return 1;
+
+        return 0; // об'єкти однакові
+    });
+
+   while (listObj.firstChild) {
+       listObj.removeChild(listObj.firstChild);
+   };
+
+   objList.forEach((el) =>{
+       let { title, desc, fuel} = el;
+       addItemToPage( title, desc, fuel);
+   });
+
 });
+// End SOrt
 
-buttback.addEventListener('click', (event) => {
-    event.preventDefault();
 
-    create_bar.style.display = 'None';
-
-    listObj.style.display = 'grid';
-    cleanInput();
-});
-
-createInForm.addEventListener('click', (event) => {
-    event.preventDefault();
-    {name, desc, fuel} = getInputValues();
-});

@@ -1,12 +1,34 @@
 const nameInp = document.getElementById('name_inp');
-const descInp = document.getElementById('desc');
+const descInp = document.getElementById('desc_inp');
 const fuelInp = document.getElementById('fuel_inp');
-const container = document.getElementById('listToRender')
-const allsite = document.getElementsByTagName('header');
+const listObj = document.getElementById('list__object');
+
+
+const EditForm = document.getElementById('Edit__block');
+
+const descInpEd = document.getElementById('descEd_inp');
+const fuelInpEd = document.getElementById('fuelEd_inp');
+const nameInpEd = document.getElementById('nameEd_inp');
+
+export const getInputValuesEdit = () =>{
+    return {
+      title: nameInpEd.value,
+      desc: descInpEd.value,
+      fuel: fuelInpEd.value,
+  };
+};
+
+
+export const cleanInputEd = () => {
+    nameInpEd.value = "";
+    descInpEd.value = "";
+    fuelInpEd.value = "";
+
+}
 
 export const getInputValues = () => {
   return {
-      name: nameInp.value,
+      title: nameInp.value,
       desc: descInp.value,
       fuel: fuelInp.value,
   };
@@ -18,3 +40,28 @@ export const cleanInput = () => {
     fuelInp.value = "";
 
 }
+const itemTemplate = ({id, title, desc, fuel }) => `
+                        <div class="object" >
+                        <div class="object__img">
+                            <img src='/static/labWeb/images/planes.jpg' alt="Nemam">
+                        </div>
+                        <div class="object__text">
+                            <h3> Title: <br></h3>
+                            <h3 class="name_sec">${title}</h3>
+                            <p>Desc: <br></p>
+                            <p class="desc_sec">${desc}</p>
+                            <p>Fuel :<br></p>
+                            <p class="fuel_sec">${fuel}</p>
+                        </div>
+                        <div class="object__button">
+                            <button type="submit" class="button bgr Edit__butt_start" id="id" >Edit</button>
+                            <button class="button remove">Remove</button>
+                        </div>
+
+                    </div>`;
+
+export const addItemToPage = (id, title, desc, fuel) => {
+  listObj.insertAdjacentHTML(
+    "beforeend",
+    itemTemplate({id, title, desc, fuel })
+  )};
