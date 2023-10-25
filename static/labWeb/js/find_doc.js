@@ -156,33 +156,33 @@ buttback.addEventListener('click', (event) => {
 
 createInForm.addEventListener('click', (event) => {
 
-    // let Status = true;
-    // event.preventDefault();
-    // let {title, desc, fuel} = getInputValues();
-    // if (title.trim() === "" || desc.trim() === "" || fuel.trim() === "") {
-    //     alert("Invalid values ");
-    //     Status = false;
-    // }
-    //
-    // if (Status){
-    //         flies.push({title, desc, fuel});
-    //
-    //  while (listObj.firstChild) {
-    //    listObj.removeChild(listObj.firstChild);
-    //  };
-    //
-    // flies.forEach((el) => {
-    //     let {title, desc, fuel} = el;
-    //     addItemToPage(title, desc, fuel)
-    // })
-    //
-    //
-    // }
-    // asite.style.margin = "0"
-    // create_bar.style.display = 'None';
-    // EditForm.style.display = 'None'
-    // listObj.style.display = 'grid';
-    // cleanInput();
+    let Status = true;
+    event.preventDefault();
+    let {title, desc, fuel} = getInputValues();
+    if (title.trim() === "" || desc.trim() === "" || fuel.trim() === "") {
+        alert("Invalid values ");
+        Status = false;
+    }
+
+    if (Status){
+            flies.push({title, desc, fuel});
+
+     while (listObj.firstChild) {
+       listObj.removeChild(listObj.firstChild);
+     };
+
+    flies.forEach((el) => {
+        let {title, desc, fuel} = el;
+        addItemToPage(title, desc, fuel)
+    })
+
+
+    }
+    asite.style.margin = "0"
+    create_bar.style.display = 'None';
+    EditForm.style.display = 'None'
+    listObj.style.display = 'grid';
+    cleanInput();
 });
 
 listObj.addEventListener('click', (event) => {

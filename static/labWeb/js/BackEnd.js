@@ -28,3 +28,16 @@ export const getAlllight = async () => {
   return await rawResponse.json();
 };
 
+export const postlight = (body) => baseRequest({ method: "POST", body });
+
+export const updatelight = (body) =>
+  baseRequest({ method: "PATCH", body:body});
+
+export const deletelight = (id) =>
+  baseRequest({ urlPath: `/${id}`, method: "DELETE" });
+
+export const findElementById = async (id) =>{
+    const element = await baseRequest({urlPath: `?id=${id}`, method:"GET"})
+
+    return await element.json();
+}

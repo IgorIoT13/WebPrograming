@@ -1,5 +1,9 @@
 import {
-    getAlllight
+    getAlllight,
+    postlight,
+    updatelight,
+    deletelight,
+    findElementById
 }from "./BackEnd.js";
 
 import {
@@ -12,7 +16,7 @@ import {
 
 
 const listObj = document.getElementById('list__object');
-const objList = []
+let objList = []
 
 const sortButton = document.getElementById('sort_butt');
 
@@ -20,6 +24,8 @@ const FuelButton = document.getElementById('Fuel');
 const textOut = document.getElementById('Fuel__text');
 const search = document.getElementById('search_butt');
 const search_inp = document.getElementById('search');
+
+const forma = document.getElementById('ObjForm');
 
 
 function BuldingPage() {
@@ -30,9 +36,7 @@ function BuldingPage() {
 }
 
 function ClearList() {
-    while (objList.firstChild) {
-       objList.removeChild(objList.firstChild);
-   };
+    objList= []
 
     while (listObj.firstChild) {
        listObj.removeChild(listObj.firstChild);
@@ -41,7 +45,11 @@ function ClearList() {
 function ExtractAllElements(){
     let promise = getAlllight();
 
-    ClearList();
+    objList = []
+
+    while (listObj.firstChild) {
+       listObj.removeChild(listObj.firstChild);
+   };
 
     promise.then(data => {
         data.forEach(obj => {
@@ -82,7 +90,7 @@ FuelButton.addEventListener("click", (event) => {
     event.preventDefault();
     let val = []
     let result = 0;
-    listObj.forEach((el) => {
+    objList.forEach((el) => {
         let {fuel} = el;
         val.push(parseInt(fuel));
     });
@@ -97,22 +105,23 @@ FuelButton.addEventListener("click", (event) => {
 
 // Sort
 sortButton.addEventListener("click", (event) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     objList.sort((a, b) => {
-        // Спочатку сортуємо за паливом (зростаючий порядок)
         if (a.fuel < b.fuel) return -1;
         if (a.fuel > b.fuel) return 1;
 
-        // Якщо паливо однакове, сортуємо за назвою (за алфавітом)
         if (a.title < b.title) return -1;
         if (a.title > b.title) return 1;
 
-        // Якщо і назва, і паливо однакові, сортуємо за описом
-        if (a.desc < b.desc) return -1;
-        if (a.desc > b.desc) return 1;
+        if (a.description < b.description) return -1;
+        if (a.description > b.description) return 1;
 
-        return 0; // об'єкти однакові
+        if (a.id < b.id) return -1;
+        if (a.id > b.id) return 1;
+
+
+        return 0;
     });
 
    while (listObj.firstChild) {
@@ -120,11 +129,36 @@ sortButton.addEventListener("click", (event) => {
    };
 
    objList.forEach((el) =>{
-       let { title, desc, fuel} = el;
-       addItemToPage( title, desc, fuel);
+       let {id, title, desc, fuel} = el;
+       addItemToPage(id, title, desc, fuel);
    });
 
 });
 // End SOrt
+
+
+//More fitch
+
+forma.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const subbut = e.submitter.value;
+
+  if (subbut === "remove") {
+    const objectId = e.submitter.id;
+    await deletelight(objectId);
+
+    await ExtractAllElements();
+
+
+  }
+
+    ClearList()
+    BuldingPage();
+});
+
+
+// Create BLOCK
+
+
 
 
